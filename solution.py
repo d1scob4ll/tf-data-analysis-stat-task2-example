@@ -11,7 +11,13 @@ def solution(p: float, x: np.array) -> tuple:
     # Это будет вашим решением
     # Не меняйте название функции и её аргументы
     alpha = 1 - p
-    loc = x.mean()
-    scale = np.sqrt(np.var(x)) / np.sqrt(len(x))
-    return loc - scale * norm.ppf(1 - alpha / 2), \
-           loc - scale * norm.ppf(alpha / 2)
+    t = 86  # время измерения
+    eps_var = 1/2  # дисперсия ошибки измерения пути
+    sigma_eps = np.sqrt(eps_var)  # стандартное отклонение ошибки измерения пути
+    sigma_x = np.sqrt(2 * eps_var)  # стандартное отклонение случайной величины X
+    X = np.sum(S) / n  # выборочное среднее значений пути
+    z = norm.ppf(1 - alpha/2)  # квантиль стандартного нормального распределения
+    a_left = (X - z * sigma_x / np.sqrt(n)) / 2  
+    b_right = (X + z * sigma_x / np.sqrt(n)) / 2 
+    
+    return a_left, b_right

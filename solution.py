@@ -16,9 +16,9 @@ def solution(p: float, x: np.array) -> tuple:
     sigma_eps = np.sqrt(eps_var)  # стандартное отклонение ошибки измерения пути
     sigma_x = np.sqrt(2 * eps_var)  # стандартное отклонение случайной величины X
     S = np.sum(x)
+    n = len(x)
     X = 2*S / (n * 86**2)  # выборочное среднее значений пути
     z = norm.ppf(1 - alpha/2)  # квантиль стандартного нормального распределения
-    n = len(x)
     a_left = (X - z * sigma_x / np.sqrt(n)) / 2  
     b_right = (X + z * sigma_x / np.sqrt(n)) / 2 
     

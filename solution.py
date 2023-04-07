@@ -15,7 +15,7 @@ def solution(p: float, x: np.array) -> tuple:
     n = len(x)
     s = np.sum(x)
     x_mean = s / (n * 86**2)
-    left = (-np.log(alpha/2 + 1/2) + x_mean)/(86**2)
-    right = (-np.log(1 - alpha/2 + 3/2) + x_mean)/(86**2)
+    left = (-np.log(alpha/2 + 1/2) - x_mean)/(86**2)
+    right = (-np.log(3/2 - alpha/2) - x_mean)/(86**2)
     return left, \
            right

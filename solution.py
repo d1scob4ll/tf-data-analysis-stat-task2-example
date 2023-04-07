@@ -11,7 +11,7 @@ def solution(p: float, x: np.array) -> tuple:
     # Измените код этой функции
     # Это будет вашим решением
     # Не меняйте название функции и её аргументы
-    lpha = 1 - p
+    alpha = 1 - p
     size = len(x)	
     chi2_rv = chi2(df = 2 * size)
     left_b = chi2_rv.ppf(1 - alpha / 2)

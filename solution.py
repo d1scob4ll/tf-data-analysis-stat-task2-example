@@ -12,8 +12,10 @@ def solution(p: float, x: np.array) -> tuple:
     # Это будет вашим решением
     # Не меняйте название функции и её аргументы
     alpha = 1 - p
-    size = len(x)	
-    chi2_rv = chi2(df = 2 * size)
-    left_b = chi2_rv.ppf(1 - alpha / 2)
-    right_b = chi2_rv.ppf(alpha / 2)	
-    return np.sqrt(size * np.mean(x*x) / (left_b * 86)), np.sqrt(size * np.mean(x*x) / (right_b * 86))
+    n = len(x)
+    s = np.sum(x)
+    x_mean = s / (n * 86**2)
+    left = (-np.log(alpha/2 + 1/2) + x_mean)/(86**2)
+    right = (-np.log(1 - alpha/2 + 3/2) + x_mean)/(86**2)
+    return left, \
+           right
